@@ -1,0 +1,8 @@
+# auto config
+.idea
+.gradle
+*.iml
+
+# build result
+build
+out
