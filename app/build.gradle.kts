@@ -6,10 +6,6 @@ plugins {
 group = "com.lignting"
 version = "1.0-SNAPSHOT"
 
-repositories {
-    mavenCentral()
-}
-
 kotlin {
     js(IR) {
         browser {
@@ -25,22 +21,12 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 //React, React DOM + Wrappers (chapter 3)
-                implementation(enforcedPlatform("org.jetbrains.kotlin-wrappers:kotlin-wrappers-bom:1.0.0-pre.490"))
+                implementation(enforcedPlatform("org.jetbrains.kotlin-wrappers:kotlin-wrappers-bom:2025.7.8"))
                 implementation("org.jetbrains.kotlin-wrappers:kotlin-react")
                 implementation("org.jetbrains.kotlin-wrappers:kotlin-react-dom")
                 
                 //Kotlin React Emotion (CSS) (chapter 3)
-                implementation("org.jetbrains.kotlin-wrappers:kotlin-emotion")
-                
-                // 显式添加 react 和 react-dom npm 依赖
-                implementation(npm("react", "18.2.0"))
-                implementation(npm("react-dom", "18.2.0"))
-                
-                //Video Player (chapter 7)
-                implementation(npm("react-player", "2.12.0"))
-                
-                //Share Buttons (chapter 7)
-                implementation(npm("react-share", "4.4.1"))
+                implementation("org.jetbrains.kotlin-wrappers:kotlin-emotion:2025.3.9")
                 
                 //Coroutines & serialization (chapter 8)
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")

@@ -1,0 +1,2 @@
+./gradlew kotlinUpgradeYarnLock
+./gradlew jsDevelopmentRun
