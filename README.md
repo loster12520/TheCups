@@ -1,2 +1,3 @@
 ./gradlew kotlinUpgradeYarnLock
-./gradlew jsDevelopmentRun
+
+./gradlew jsBrowserDevelopmentRun
