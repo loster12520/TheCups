@@ -1,3 +1,11 @@
-./gradlew kotlinUpgradeYarnLock
+## TheCups
 
-./gradlew jsBrowserDevelopmentRun
+---
+
+### 这是什么？
+
+TheCups是一个基于ktor+react的前后端项目，暂时未定要做什么
+
+### 这个项目的目标是什么？
+
+这个项目的目标是学习和实践前后端分离的开发模式，使用Ktor作为后端框架，React作为前端框架。

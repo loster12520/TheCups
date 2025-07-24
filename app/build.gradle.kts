@@ -1,31 +1,34 @@
-val groupName = "lignting"
-
 /**
- * 封装自定义task
+ * test task
  */
-fun ligntingTask(name: String, action: Task.() -> Unit) {
-    tasks.register("$groupName-$name") {
-        group = groupName
-        this.action()
+ligntingTask("test") {
+    doLast {
+        println("Hello world!")
     }
-}
+}.ligntingDescription("a test task")
 
 /**
  * install task
  * yarn install
  */
-ligntingTask("install"){
-    doLast {
-        exec {
-            commandLine("yarn", "install")
-            workingDir = project.projectDir
-        }
-    }
-}
+ligntingTask("yarnInstall") {
+    exec(
+        workingDir = "appMain",
+        commandLine = "yarn.cmd",
+        args = listOf("install"),
+    )
+}.ligntingDescription("Install dependencies using yarn")
 
 /**
- * test task
+ * dev task
+ * yarn dev
  */
-ligntingTask("test") {
-    println("test")
-}
+ligntingTask("yarnDev") {
+    doLast {
+        exec(
+            workingDir = "appMain",
+            commandLine = "yarn.cmd",
+            args = listOf("dev"),
+        )
+    }
+}.ligntingDescription("Install dependencies using yarn")

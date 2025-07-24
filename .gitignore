@@ -1,5 +1,6 @@
 # auto config
 .idea
+.kotlin
 .gradle
 *.iml
 
