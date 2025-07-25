@@ -25,5 +25,6 @@ TheCups是一个基于ktor+react的前后端项目，暂时未定要做什么
 
 ### 文档链接
 
-- [开发日志](doc/dev-log.md)
-- [想法](doc/ideas.md)
+- [开发日志](doc/documents/dev-log.md)
+- [想法](doc/documents/ideas.md)
+- 
