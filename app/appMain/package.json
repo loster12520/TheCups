@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/node": "^24.1.0",
     "antd": "^5.26.6",
     "axios": "^1.11.0",
     "classnames": "^2.5.1",
@@ -17,7 +18,9 @@
     "mobx-react": "^9.2.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router-dom": "^7.7.0"
+    "react-router-dom": "^7.7.0",
+    "sass": "^1.89.2",
+    "sass-loader": "^16.0.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",
