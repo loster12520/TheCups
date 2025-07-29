@@ -9,6 +9,18 @@
 ### 2025-07-25
 
 - 前端：
-  - 增添了[基础路由配置](../../app/appMain/src/views/router.tsx)
-  - 增加了文章[关于前端分层必要性的简述](appoc/关于前端分层必要性的简述.md)
-  - 
+    - 增添了[基础路由配置](../../app/appMain/src/views/router.tsx)
+    - 增加了文章[关于前端分层必要性的简述](appoc/关于前端分层必要性的简述.md)
+
+### 2025-07-29
+
+- 前端：
+    - 开始编写[command页面](../../app/appMain/src/views/pages/command/index.tsx)
+- 后端：
+    - 增添了数据驱动部分（详情请见api模块的com.lignting.data包下文件）
+    - 添加了test-get和test-post接口，用于测试数据驱动功能
+- 架构：
+  - 后端确定技术选型为
+    - ktor负责管理端口
+    - sqlite作为数据存储
+    - jimmer作为ORM

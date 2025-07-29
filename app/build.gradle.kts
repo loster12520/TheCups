@@ -12,11 +12,13 @@ ligntingTask("test") {
  * yarn install
  */
 ligntingTask("yarnInstall") {
-    exec(
-        workingDir = "appMain",
-        commandLine = "yarn.cmd",
-        args = listOf("install"),
-    )
+    doLast {
+        exec(
+            workingDir = "appMain",
+            commandLine = "yarn.cmd",
+            args = listOf("install"),
+        )
+    }
 }.ligntingDescription("Install dependencies using yarn")
 
 /**
