@@ -24,3 +24,9 @@
     - ktor负责管理端口
     - sqlite作为数据存储
     - jimmer作为ORM
+
+### 2025-07-30
+
+- 前端：
+  - 完成[command页面](../../app/appMain/src/views/pages/command/index.tsx)基础布局
+  - 开始编写[keyboard组件](../../app/appMain/src/views/pages/command/components/keyboard-panel/index.tsx)用于在command页面添加键盘

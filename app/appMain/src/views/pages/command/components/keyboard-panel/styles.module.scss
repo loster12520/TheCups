@@ -1,0 +1,21 @@
+.keyboardPanel {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.keyboardRow {
+  flex: 1 1 0;
+  display: flex;
+}
+
+.activeKey {
+  flex: 1 1 0;
+  color: aqua;
+}
+
+.key {
+  flex: 1 1 0;
+  color: cornflowerblue;
+}
