@@ -10,12 +10,32 @@
   display: flex;
 }
 
-.activeKey {
-  flex: 1 1 0;
-  color: aqua;
+.normalKey {
+  flex: 0 1 7%;
+}
+
+.functionKey {
+  flex: 1 1 10%;
+}
+
+.spaceKey {
+  flex: 1 1 40%;
+}
+
+.shiftedKey {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  
+  font-size: 12px;
 }
 
 .key {
-  flex: 1 1 0;
   color: cornflowerblue;
+}
+
+.activeKey {
+  color: aqua;
 }
