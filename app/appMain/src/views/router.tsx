@@ -2,6 +2,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import type {ReactNode} from "react";
 import {HomePage} from "@/views/pages/home";
 import {CommandPage} from "@/views/pages/command";
+import Test from "@/views/pages/test";
 
 /**
  * 路由列表
@@ -15,16 +16,16 @@ const routes: {
     element: ReactNode;
 }[] = [
     {
-        path: "/test",
-        element: <div>Test Page</div>
-    },
-    {
         path: "/",
         element: <HomePage/>
     },
     {
         path: "/command",
         element: <CommandPage/>
+    },
+    {
+        path: "/test",
+        element: <Test/>
     }
 ]
 

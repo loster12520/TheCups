@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react"
 import styles from "./styles.module.scss"
 import classNames from "classnames";
+import {commandStore} from "@/services/stores/command";
 
 /**
  * 键盘按键的类型定义
@@ -96,10 +97,19 @@ const keyboardKeys: KeyboardKey[][] = [
     ]
 ]
 
+/**
+ * 键盘面板组件
+ * 显示一个虚拟键盘，响应键盘事件并高亮显示当前按下的键
+ *
+ * @returns {JSX.Element} 键盘面板组件
+ * @author Lignting
+ */
 const KeyboardPanel = () => {
     const [activeKey, setActiveKey] = useState<string | null>(null)
     const handleKeyDown = (e: KeyboardEvent) => {
-        setActiveKey(e.key.toUpperCase())
+        const key = e.key
+        setActiveKey(key)
+        commandStore.keyboardInput(key)
     }
     const handleKeyUp = () => {
         setActiveKey(null)
@@ -109,9 +119,11 @@ const KeyboardPanel = () => {
     useEffect(() => {
         window.addEventListener("keydown", handleKeyDown)
         window.addEventListener("keyup", handleKeyUp)
+        window.addEventListener("blur", handleKeyUp)
         return () => {
             window.removeEventListener("keydown", handleKeyDown)
             window.removeEventListener("keyup", handleKeyUp)
+            window.removeEventListener("blur", handleKeyUp)
         }
     }, [])
     
@@ -130,8 +142,8 @@ const KeyboardPanel = () => {
                                 keyObj.shifted && styles.shiftedKey,
                             ])}
                         >
-                            <span>{keyObj.label}</span>
                             <span>{keyObj.shifted && keyObj.shifted}</span>
+                            <span>{keyObj.label}</span>
                         </div>
                     ))}
                 </div>
