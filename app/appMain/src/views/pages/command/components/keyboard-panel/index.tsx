@@ -1,6 +1,9 @@
 import {useEffect, useState} from "react"
 import styles from "./styles.module.scss"
 import classNames from "classnames";
+import {commandStore} from "@/services/stores/command";
+import {keyListenerStore} from "@/services/stores/command/key-listener";
+import { observer } from "mobx-react-lite";
 
 /**
  * 键盘按键的类型定义
@@ -41,10 +44,10 @@ const keyboardKeys: KeyboardKey[][] = [
     ],
     [
         {key: "tab", label: "Tab", type: "function"},
-        {key: "Q", label: "Q"},
-        {key: "W", label: "W"},
-        {key: "E", label: "E"},
-        {key: "R", label: "R"},
+        {key: "a", label: "Q"},
+        {key: "w", label: "W"},
+        {key: "e", label: "E"},
+        {key: "r", label: "R"},
         {key: "T", label: "T"},
         {key: "Y", label: "Y"},
         {key: "U", label: "U"},
@@ -96,22 +99,19 @@ const keyboardKeys: KeyboardKey[][] = [
     ]
 ]
 
-const KeyboardPanel = () => {
-    const [activeKey, setActiveKey] = useState<string | null>(null)
-    const handleKeyDown = (e: KeyboardEvent) => {
-        setActiveKey(e.key.toUpperCase())
-    }
-    const handleKeyUp = () => {
-        setActiveKey(null)
-    }
-    
-    // Handle keydown and keyup events to update the active key
+/**
+ * 键盘面板组件
+ * 显示一个虚拟键盘，响应键盘事件并高亮显示当前按下的键
+ *
+ * @returns {JSX.Element} 键盘面板组件
+ * @author Lignting
+ */
+const KeyboardPanel = observer(() => {
     useEffect(() => {
-        window.addEventListener("keydown", handleKeyDown)
-        window.addEventListener("keyup", handleKeyUp)
+        keyListenerStore.init(key => commandStore.keyboardInput(key))
+        console.log("KeyboardPanel mounted, initializing key listener")
         return () => {
-            window.removeEventListener("keydown", handleKeyDown)
-            window.removeEventListener("keyup", handleKeyUp)
+            keyListenerStore.stop()
         }
     }, [])
     
@@ -123,21 +123,26 @@ const KeyboardPanel = () => {
                         <div
                             key={keyObj.key}
                             className={classNames([
-                                activeKey === keyObj.key.toUpperCase() ? styles.activeKey : styles.key,
+                                keyListenerStore.key.toLowerCase() === keyObj.key.toLowerCase() ? styles.activeKey : styles.key,
                                 (!keyObj.type || keyObj.type === "normal") && styles.normalKey,
                                 keyObj.type === "function" && styles.functionKey,
                                 keyObj.type === "space" && styles.spaceKey,
                                 keyObj.shifted && styles.shiftedKey,
+                                // 功能键高亮
+                                (keyObj.key === "shift" && keyListenerStore.isShifted) && styles.activeKey,
+                                (keyObj.key === "ctrl" && keyListenerStore.isCtrlPressed) && styles.activeKey,
+                                (keyObj.key === "alt" && keyListenerStore.isAltPressed) && styles.activeKey,
+                                (keyObj.key === "CapsLock" && keyListenerStore.isCapsLock) && styles.activeKey,
                             ])}
                         >
-                            <span>{keyObj.label}</span>
                             <span>{keyObj.shifted && keyObj.shifted}</span>
+                            <span>{keyObj.label}</span>
                         </div>
                     ))}
                 </div>
             ))}
         </div>
     )
-}
+})
 
 export {KeyboardPanel}
