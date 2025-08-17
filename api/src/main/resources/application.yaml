@@ -4,3 +4,4 @@ ktor:
       - com.lignting.ApplicationKt.module
   deployment:
     port: 7868
+

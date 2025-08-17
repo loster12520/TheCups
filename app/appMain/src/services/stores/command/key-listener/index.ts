@@ -1,4 +1,4 @@
-import {action, observable} from "mobx";
+import {action, observable, makeObservable} from "mobx";
 
 /**
  * `KeyListenerStore`是一个用于监听键盘事件的store。
@@ -20,6 +20,10 @@ class KeyListenerStore {
      * 如果没有提供，则不执行任何操作
      */
     private inputFunction: ((key: string) => void) | null = null;
+    
+    constructor() {
+        makeObservable(this);
+    }
     
     /**
      * 初始化键盘监听器
@@ -50,7 +54,7 @@ class KeyListenerStore {
      * 处理键盘按下事件
      * @param event 键盘事件对象
      */
-    private handleKeyDown = (event: KeyboardEvent) => {
+    @action private handleKeyDown = (event: KeyboardEvent) => {
         // 过滤按下的功能键
         if (event.key === "Shift") {
             this.isShifted = true;
@@ -60,7 +64,7 @@ class KeyListenerStore {
             this.isCtrlPressed = true;
         } else if (event.key === "Alt") {
             this.isAltPressed = true;
-        } else {
+        } else if (!event.repeat) {
             // TODO 处理快捷键部分
             this.key = event.key;
             if (this.inputFunction) {
@@ -76,7 +80,7 @@ class KeyListenerStore {
      * 处理键盘按键释放事件
      * @param event 键盘事件对象
      */
-    private handleKeyUp = (event: KeyboardEvent) => {
+    @action private handleKeyUp = (event: KeyboardEvent) => {
         // 处理按键释放事件
         if (event.key === "Shift") {
             this.isShifted = false;
@@ -86,7 +90,7 @@ class KeyListenerStore {
             this.isCtrlPressed = false;
         } else if (event.key === "Alt") {
             this.isAltPressed = false;
-        } else {
+        } else if (!event.repeat) {
             // 清除当前按下的键
             this.key = "";
         }

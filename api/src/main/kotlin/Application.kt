@@ -2,6 +2,11 @@ package com.lignting
 
 import io.ktor.serialization.gson.gson
 import io.ktor.server.application.*
+import io.ktor.server.auth.Authentication
+import io.ktor.server.auth.authentication
+import io.ktor.server.auth.basic
+import io.ktor.server.auth.jwt.JWTPrincipal
+import io.ktor.server.auth.jwt.jwt
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 
 fun main(args: Array<String>) {
@@ -12,6 +17,12 @@ fun Application.module() {
     install(ContentNegotiation) {
         gson {
             setPrettyPrinting()
+        }
+    }
+    
+    install(Authentication) {
+        jwt {
+        
         }
     }
     
