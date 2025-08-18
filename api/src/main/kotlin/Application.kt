@@ -1,5 +1,6 @@
 package com.lignting
 
+import com.lignting.com.lignting.utils.JwtUtils
 import io.ktor.serialization.gson.gson
 import io.ktor.server.application.*
 import io.ktor.server.auth.Authentication
@@ -22,7 +23,16 @@ fun Application.module() {
     
     install(Authentication) {
         jwt {
-        
+            realm = "lignting"
+            verifier(JwtUtils.getVerifier())
+            validate { credentials ->
+                val account = credentials.payload.subject
+                if (account != null) {
+                    JWTPrincipal(credentials.payload)
+                } else {
+                    null
+                }
+            }
         }
     }
     
