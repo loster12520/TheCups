@@ -3,7 +3,7 @@ import styles from "./styles.module.scss"
 import classNames from "classnames";
 import {commandStore} from "@/services/stores/command";
 import {keyListenerStore} from "@/services/stores/command/key-listener";
-import { observer } from "mobx-react-lite";
+import {observer} from "mobx-react-lite";
 
 /**
  * 键盘按键的类型定义
@@ -44,7 +44,7 @@ const keyboardKeys: KeyboardKey[][] = [
     ],
     [
         {key: "tab", label: "Tab", type: "function"},
-        {key: "a", label: "Q"},
+        {key: "q", label: "Q"},
         {key: "w", label: "W"},
         {key: "e", label: "E"},
         {key: "r", label: "R"},

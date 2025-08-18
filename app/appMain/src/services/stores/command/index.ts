@@ -1,4 +1,4 @@
-import {action, observable} from "mobx";
+import {action, observable, makeObservable} from "mobx";
 import type {CommandHistory} from "@/basic/models/command";
 
 /**
@@ -17,6 +17,10 @@ class CommandStore {
      * 命令历史记录数组，存储之前执行过的命令。
      */
     @observable commandHistory: CommandHistory[] = [];
+    
+    constructor() {
+        makeObservable(this);
+    }
     
     /**
      * 发送命令
@@ -40,17 +44,15 @@ class CommandStore {
     
     @action keyboardInput = (key: string) => {
         // 处理键盘输入
-        // if (key === "enter") {
-        //     this.send();
-        // } else if (key === "backspace") {
-        //     this.command = this.command.slice(0, -1);
-        // } else if (key === "clear") {
-        //     this.command = "";
-        // } else {
-        //     this.command += key;
-        // }
-        
-        console.log(`Keyboard input received: ${key}`);
+        if (key === "enter") {
+            this.send();
+        } else if (key === "backspace") {
+            this.command = this.command.slice(0, -1);
+        } else if (key === "clear") {
+            this.command = "";
+        } else {
+            this.command += key;
+        }
     }
 }
 

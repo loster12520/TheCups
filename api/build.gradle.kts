@@ -2,6 +2,7 @@ val kotlin_version: String by project
 val logback_version: String by project
 val jimmer_version: String by project
 val sqlite_version: String by project
+val ktor_version: String by project
 
 plugins {
     kotlin("jvm") version "2.1.10"
@@ -22,6 +23,8 @@ dependencies {
     implementation("io.ktor:ktor-server-config-yaml")
     implementation("io.ktor:ktor-server-content-negotiation")
     implementation("io.ktor:ktor-serialization-gson")
+    implementation("io.ktor:ktor-server-auth")
+    implementation("io.ktor:ktor-server-auth-jwt")
     testImplementation("io.ktor:ktor-server-test-host")
     
     // data management dependencies

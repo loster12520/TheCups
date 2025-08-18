@@ -1,5 +1,6 @@
 import styles from "./styles.module.scss"
 import {KeyboardPanel} from "@/views/pages/command/components/keyboard-panel";
+import {CommandPanel} from "@/views/pages/command/components/command-panel";
 
 const CommandPage = () => {
     return (
@@ -12,7 +13,9 @@ const CommandPage = () => {
                 <div className={styles.folderPanel}>文件夹区域</div>
             </div>
             <div className={styles.rightPanel}>
-                <div className={styles.cmdPanel}>cmd区域</div>
+                <div className={styles.cmdPanel}>
+                    <CommandPanel/>
+                </div>
                 <div className={styles.keyboardPanel}>
                     <KeyboardPanel/>
                 </div>
