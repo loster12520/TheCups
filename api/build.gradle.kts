@@ -25,6 +25,7 @@ dependencies {
     implementation("io.ktor:ktor-serialization-gson")
     implementation("io.ktor:ktor-server-auth")
     implementation("io.ktor:ktor-server-auth-jwt")
+    implementation("io.ktor:ktor-server-websockets")
     testImplementation("io.ktor:ktor-server-test-host")
     
     // data management dependencies
