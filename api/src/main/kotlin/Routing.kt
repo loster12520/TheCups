@@ -4,6 +4,7 @@ import com.lignting.com.lignting.data.DatabaseManager.sqlClient
 import com.lignting.com.lignting.data.models.Test
 import com.lignting.com.lignting.data.models.fetchBy
 import com.lignting.com.lignting.data.models.text
+import com.lignting.com.lignting.routes.usersRouting
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
@@ -35,4 +36,6 @@ fun Application.configureRouting() {
             }
         }
     }
+    
+    usersRouting()
 }
