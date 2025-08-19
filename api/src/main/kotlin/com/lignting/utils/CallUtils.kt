@@ -3,11 +3,13 @@ package com.lignting.com.lignting.utils
 import io.ktor.server.request.receive
 import io.ktor.server.response.respond
 import io.ktor.server.routing.RoutingContext
+import java.util.UUID
 
 data class CallResult<T>(
     val code: Int,
     val message: String,
-    val data: T?
+    val data: T?,
+    val traceId: String? = UUID.randomUUID().toString()
 )
 
 suspend inline fun <T, reified R : Any> RoutingContext.callWithInput(function: RoutingContext.(R) -> T) =
