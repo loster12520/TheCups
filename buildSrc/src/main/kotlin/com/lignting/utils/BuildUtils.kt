@@ -5,14 +5,14 @@ import org.gradle.process.ExecSpec
 import java.io.File
 import java.io.OutputStream
 
-fun Project.ligntingTask(name: String, action: Task.() -> Unit): TaskProvider<Task?> {
+fun Project.ligntingTask(name: String, action: Task.() -> Unit): TaskProvider<Task> {
     return tasks.register("lignting-$name") {
         group = "lignting"
         this.action()
     }
 }
 
-fun TaskProvider<Task?>.ligntingDescription(description: String) {
+fun TaskProvider<Task>.ligntingDescription(description: String) {
     this.configure {
         this.description = description
     }
