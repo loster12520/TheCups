@@ -1,11 +1,9 @@
 package com.lignting
 
-import com.lignting.com.lignting.utils.JwtUtils
+import com.lignting.utils.JwtUtils
 import io.ktor.serialization.gson.gson
 import io.ktor.server.application.*
 import io.ktor.server.auth.Authentication
-import io.ktor.server.auth.authentication
-import io.ktor.server.auth.basic
 import io.ktor.server.auth.jwt.JWTPrincipal
 import io.ktor.server.auth.jwt.jwt
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation

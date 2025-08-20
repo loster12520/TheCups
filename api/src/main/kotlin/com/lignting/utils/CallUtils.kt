@@ -1,4 +1,4 @@
-package com.lignting.com.lignting.utils
+package com.lignting.utils
 
 import io.ktor.server.request.receive
 import io.ktor.server.response.respond

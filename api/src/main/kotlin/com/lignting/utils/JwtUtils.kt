@@ -1,4 +1,4 @@
-package com.lignting.com.lignting.utils
+package com.lignting.utils
 
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm

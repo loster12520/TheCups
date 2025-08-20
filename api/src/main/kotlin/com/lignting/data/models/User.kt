@@ -1,4 +1,4 @@
-package com.lignting.com.lignting.data.models
+package com.lignting.data.models
 
 data class User(
     val account: String,

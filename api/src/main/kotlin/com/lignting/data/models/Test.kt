@@ -1,4 +1,4 @@
-package com.lignting.com.lignting.data.models
+package com.lignting.data.models
 
 import org.babyfish.jimmer.sql.Entity
 import org.babyfish.jimmer.sql.Id

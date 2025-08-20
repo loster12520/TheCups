@@ -1,4 +1,4 @@
-package com.lignting.com.lignting.data
+package com.lignting.data
 
 import org.babyfish.jimmer.sql.dialect.SQLiteDialect
 import org.babyfish.jimmer.sql.kt.KSqlClient

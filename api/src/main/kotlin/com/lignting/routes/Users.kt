@@ -1,8 +1,8 @@
-package com.lignting.com.lignting.routes
+package com.lignting.routes
 
-import com.lignting.com.lignting.data.models.User
-import com.lignting.com.lignting.utils.JwtUtils
-import com.lignting.com.lignting.utils.call
+import com.lignting.data.models.User
+import com.lignting.utils.JwtUtils
+import com.lignting.utils.call
 import io.ktor.server.application.Application
 import io.ktor.server.auth.authenticate
 import io.ktor.server.request.receive

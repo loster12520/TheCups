@@ -1,4 +1,4 @@
-package com.lignting.com.lignting.routes
+package com.lignting.routes
 
 import io.ktor.server.application.Application
 import io.ktor.server.routing.routing

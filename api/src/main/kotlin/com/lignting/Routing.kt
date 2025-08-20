@@ -1,7 +1,7 @@
 package com.lignting
 
-import com.lignting.com.lignting.data.DatabaseManager.sqlClient
-import com.lignting.com.lignting.data.models.Test
+import com.lignting.data.DatabaseManager.sqlClient
+import com.lignting.data.models.Test
 import com.lignting.com.lignting.data.models.fetchBy
 import com.lignting.com.lignting.data.models.text
 import io.ktor.server.application.*
