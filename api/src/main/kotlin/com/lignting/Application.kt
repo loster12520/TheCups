@@ -1,6 +1,7 @@
 package com.lignting
 
 import com.lignting.utils.JwtUtils
+import io.ktor.serialization.gson.GsonWebsocketContentConverter
 import io.ktor.serialization.gson.gson
 import io.ktor.server.application.*
 import io.ktor.server.auth.Authentication
@@ -43,6 +44,7 @@ fun Application.module() {
         timeout = 10.seconds
         maxFrameSize = 100
         masking = false
+        contentConverter = GsonWebsocketContentConverter()
     }
     
     configureRouting()
