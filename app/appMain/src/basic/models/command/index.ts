@@ -9,4 +9,5 @@ export interface CommandHistory {
     id: string,
     message: string,
     from: 0 | 1,
+    traceId: string,
 }

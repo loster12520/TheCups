@@ -42,7 +42,7 @@ fun Application.module() {
     install(WebSockets) {
         pingPeriod = 5.seconds
         timeout = 10.seconds
-        maxFrameSize = 100
+        maxFrameSize = 1000
         masking = false
         contentConverter = GsonWebsocketContentConverter()
     }
