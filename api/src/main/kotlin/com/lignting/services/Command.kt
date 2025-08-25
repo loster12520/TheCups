@@ -2,8 +2,6 @@ package com.lignting.services
 
 import kotlinx.coroutines.delay
 import java.io.File
-import kotlin.collections.plusAssign
-import kotlin.text.append
 
 /**
  * 命令执行服务
@@ -27,11 +25,24 @@ class CommandService(
      */
     var dir = "C:/home" // 默认目录
     
+    /**
+     * 是否正在执行命令
+     */
+    var isRunning = false
+    
+    /**
+     * 执行命令
+     * @param command 要执行的命令字符串
+     * @param delay 每次读取输出的延迟时间，单位为毫秒，默认值为100ms
+     * @return 返回命令是否成功执行（退出码为0）
+     */
     suspend fun executeCommand(command: String, delay: Long = 100): Boolean {
         buffer = ""
         outputMessage = StringBuffer("")
         
         return try {
+            // 标记为正在运行
+            isRunning = true
             // 使用 ProcessBuilder 启动命令
             val cmd = if (System.getProperty("os.name").startsWith("Windows")) {
                 listOf("cmd", "/c") + command.split(" ")
@@ -77,6 +88,8 @@ class CommandService(
         } catch (e: Exception) {
             e.printStackTrace()
             false // 异常时返回 false
+        } finally {
+            isRunning = false
         }
     }
 }
