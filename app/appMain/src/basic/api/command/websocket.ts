@@ -1,6 +1,6 @@
 const base_url = "ws://127.0.0.1:7868/command/test";
 
-type MessageType = 'message' | 'heartbeat';
+type MessageType = 'message' | 'heartbeat' | 'auth';
 
 interface CommandMessage {
     type: MessageType;
@@ -12,18 +12,27 @@ interface CommandMessage {
 export class WebSocketManager {
     private ws: WebSocket | null = null;
     private readonly baseUrl: string;
+    private readonly token: string;
     private heartbeatInterval: any = null;
     private genTraceId = () => crypto.randomUUID();
     private readonly onMessage: (type: string, data: string, traceId: string) => void;
     
-    constructor(onMessage: (type: string, data: string, traceId: string) => void, baseUrl?: string) {
+    constructor(onMessage: (type: string, data: string, traceId: string) => void, baseUrl?: string, token?: string) {
         this.baseUrl = baseUrl ?? base_url;
+        this.token = token ?? 'ligntingTestToken';
         this.onMessage = onMessage;
         this.connect();
         this.startHeartbeat();
+        this.sendRaw({
+            type: 'auth',
+            timeStamp: Date.now(),
+            data: this.token,
+            traceId: this.genTraceId(),
+        });
     }
     
     private connect() {
+        console.log(`Connecting to WebSocket at ${this.baseUrl}`);
         this.ws = new WebSocket(this.baseUrl);
         this.ws.onmessage = (event) => {
             try {
@@ -63,6 +72,7 @@ export class WebSocketManager {
     }
     
     public send(command: string): boolean {
+        console.log(`Sending command: ${command}`);
         return this.sendRaw({
             type: 'message',
             timeStamp: Date.now(),

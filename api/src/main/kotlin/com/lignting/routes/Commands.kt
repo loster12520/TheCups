@@ -45,7 +45,7 @@ fun Application.commandsRouting() {
     routing {
         webSocket("/command/test") {
             var authed = false
-            var token = ""
+            var token: String
             var traceId = ""
             var sessionInfo: SessionInfo? = null
             
@@ -59,10 +59,9 @@ fun Application.commandsRouting() {
             }
             
             try {
-                for (frame in incoming) {
-                    val input = receiveDeserialized<CommandWebSocketData>().also {
-                        println(it)
-                    }
+                while (true) {
+                    val input = receiveDeserialized<CommandWebSocketData>()
+                    println("收到消息: $input")
                     
                     when (input.type) {
                         "auth" -> {
@@ -92,7 +91,7 @@ fun Application.commandsRouting() {
                             }
                             sessionInfo.lastActive = System.currentTimeMillis()
                             sendSerialized(
-                                CommandWebSocketData("auth", System.currentTimeMillis(), "success", "")
+                                CommandWebSocketData("auth", System.currentTimeMillis(), "success", input.traceId)
                             )
                         }
                         
