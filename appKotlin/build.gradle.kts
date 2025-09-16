@@ -11,6 +11,7 @@ val dependenciesList: LibrariesForKotlinWrappers.() -> List<Provider<MinimalExte
         reactDom,
         emotion.css,
         emotion.react,
+        reactRouter,
     )
 }
 

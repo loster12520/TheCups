@@ -1,23 +1,24 @@
-import emotion.react.css
-import kotlinx.browser.document
-import react.Fragment
+package example
+
+import example.com.lignting.view.pages.com.lignting.view.Router
 import react.create
 import react.dom.client.createRoot
-import react.dom.html.ReactHTML.div
-import react.dom.html.ReactHTML.h1
-import web.cssom.NamedColor
-import web.dom.Element
+import web.dom.document
+import web.html.HtmlTagName.div
+import web.html.HTMLElement
 
 fun main() {
-    val container = document.getElementById("root") as Element? ?: error("Couldn't find root container!")
-    createRoot(container).render(Fragment.create {
-        div {
-            css {
-                color = NamedColor.red
-            }
-            h1 {
-                +"Hello, React+Kotlin/JS!"
-            }
-        }
-    })
+    val container = createContainer()
+    createRoot(container)
+        .render(Router.create())
+}
+
+private fun createContainer(): HTMLElement {
+    val container = document.createElement(div)
+    container.style.apply {
+        width = "100%"
+        height = "100%"
+    }
+    document.body.appendChild(container)
+    return container
 }
