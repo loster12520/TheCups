@@ -1,4 +1,4 @@
-package example.com.lignting.view.pages.com.lignting.view
+package com.lignting.view
 
 import com.lignting.view.pages.Home
 import react.FC
@@ -22,7 +22,7 @@ val routers = listOf(
         element = Home,
     ),
 ).map {
-    RouteObject(
+    RouteObject.Companion(
         path = "${it.path}",
         element = it.element?.create(),
     )

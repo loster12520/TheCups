@@ -1,6 +1,4 @@
-package example
-
-import example.com.lignting.view.pages.com.lignting.view.Router
+import com.lignting.view.Router
 import react.create
 import react.dom.client.createRoot
 import web.dom.document

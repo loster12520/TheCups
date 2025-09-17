@@ -1,5 +1,7 @@
 package com.lignting.data
 
+import com.lignting.utils.fromJson
+import com.lignting.utils.toJson
 import org.babyfish.jimmer.sql.dialect.SQLiteDialect
 import org.babyfish.jimmer.sql.kt.KSqlClient
 import org.babyfish.jimmer.sql.kt.newKSqlClient
@@ -62,5 +64,30 @@ object DatabaseManager {
         connection.createStatement().use { statement ->
             statement.executeUpdate(sql)
         }
+    }
+}
+
+/**
+ * TemporaryObjectManager is a singleton object that manages temporary storage of objects in memory.
+ * It uses a mutable map to store objects as JSON strings, allowing for easy serialization and deserialization.
+ */
+object TemporaryObjectManager {
+    /**
+     * A mutable map to store temporary objects as JSON strings.
+     */
+    val temporaryObjectMap = mutableMapOf<String, String>()
+    
+    /**
+     * Stores an object in the temporary map after converting it to a JSON string.
+     */
+    fun <T : Any> setObject(key: String, value: T) {
+        temporaryObjectMap[key] = value.toJson()
+    }
+    
+    /**
+     * Retrieves an object from the temporary map by its key and converts it back to the specified type.
+     */
+    inline fun <reified T> getObject(key: String): T? {
+        return temporaryObjectMap[key]?.fromJson<T>()
     }
 }
